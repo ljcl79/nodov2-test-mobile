@@ -1,0 +1,29 @@
+appId: com.gestortareasapp
+---
+- clearState
+- launchApp
+
+- tapOn:
+    text: "+"
+
+- assertVisible:
+    text: "Nueva Tarea"
+
+- tapOn:
+    text: "Ej: Comprar víveres"
+- inputText: "Realizar los quizzes de la formación"
+
+- tapOn:
+    text: "Descripción detallada de la tarea..."
+- inputText: "Así que la coordinación habilite los quizzes, debo realizarlos."
+
+- hideKeyboard
+
+- tapOn:
+    text: "Realizada"
+
+- tapOn:
+    text: "Guardar"
+
+- assertVisible:
+    text: "Realizar los quizzes de la formación"

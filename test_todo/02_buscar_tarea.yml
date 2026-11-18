@@ -1,0 +1,14 @@
+appId: com.gestortareasapp
+---
+- clearState
+- launchApp
+
+- tapOn:
+    text: "Buscar por título..."
+
+- inputText: "React Native"
+
+- assertNotVisible:
+    text: "Editar"
+    index: 1
+

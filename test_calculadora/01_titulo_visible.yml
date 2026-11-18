@@ -1,0 +1,24 @@
+appId: com.calculadoraimc
+---
+- launchApp
+- clearState
+
+- tapOn:
+    id: "weight_input"
+#text: "Entrada de Peso en kilogramos"
+
+- inputText: "83"
+
+- tapOn:
+    text: "Entrada de Altura en centímetros"
+
+- inputText: "180"
+
+- tapOn:
+    id: "calculate_button"
+
+- assertVisible:
+    text: "25.62"
+
+- assertVisible:
+    text: "Sobrepeso"
