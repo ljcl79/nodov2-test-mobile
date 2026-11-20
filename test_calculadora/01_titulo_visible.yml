@@ -5,7 +5,6 @@ appId: com.calculadoraimc
 
 - tapOn:
     id: "weight_input"
-#text: "Entrada de Peso en kilogramos"
 
 - inputText: "83"
 
