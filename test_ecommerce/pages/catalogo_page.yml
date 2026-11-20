@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    id: "search_input"
+
+- inputText: "${PRODUCT_NAME}"
+
+- doubleTapOn: "Ver detalles de ${PRODUCT_NAME}"
+
+- assertVisible:
+    id: "product_detail_name"
+
+- assertVisible:
+    text: "${PRODUCT_NAME}"

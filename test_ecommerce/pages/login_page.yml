@@ -1,0 +1,15 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    id: "username_input"
+- inputText: "${USERNAME}"
+
+- tapOn:
+    id: "password_input"
+- inputText: "${PASSWORD}"
+
+- tapOn:
+    id: "login_button"
+
+- assertVisible:
+    text: "Catálogo"

@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    id: "cart_button"
+  
+- assertVisible:
+    text: "Mi Carrito"
+
+- assertVisible:
+    text: "${PRODUCT_NAME} (x1)"
+
+- assertVisible:
+    id: "total_price_text"
+    text: "${PRODUCT_VALUE}"

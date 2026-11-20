@@ -1,0 +1,18 @@
+appId: com.ecommerce
+---
+- clearState
+
+- launchApp
+
+- runFlow:
+    file: ./pages/login_page.yml
+    env:
+      APP_ID: com.ecommerce
+      USERNAME: "testuser"
+      PASSWORD: "password123"
+
+- runFlow:
+    file: ./pages/catalogo_page.yml
+    env:
+      APP_ID: com.ecommerce
+      PRODUCT_NAME: "Smartwatch 2"

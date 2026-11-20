@@ -1,0 +1,12 @@
+appId: com.ecommerce
+---
+- clearState
+
+- launchApp
+
+- runFlow:
+    file: ./pages/login_page.yml
+    env:
+      APP_ID: com.ecommerce
+      USERNAME: "testuser"
+      PASSWORD: "password123"

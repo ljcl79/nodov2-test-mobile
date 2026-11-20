@@ -1,0 +1,33 @@
+appId: com.ecommerce
+---
+- clearState
+
+- launchApp
+
+- tapOn:
+    id: "username_input"
+- inputText: "testuser"
+
+- tapOn:
+    id: "password_input"
+- inputText: "password123"
+
+- tapOn:
+    id: "login_button"
+
+- assertVisible:
+    text: "Catálogo"
+
+- tapOn:
+    id: "search_input"
+
+- inputText: "Smartphone X"
+
+- doubleTapOn: "Ver detalles de Smartphone X"
+
+- assertVisible:
+    id: "product_detail_name"
+
+- assertVisible:
+    text: "Smartphone X"
+

@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    id: "add_to_cart_button"
+
+- assertVisible:
+    id: "button1"
+
+- tapOn:
+    id: "button1"
+
+- assertVisible:
+    text: "Carrito (1)"
+  

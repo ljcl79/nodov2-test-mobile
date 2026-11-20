@@ -1,0 +1,19 @@
+appId: com.ecommerce
+---
+- clearState
+
+- launchApp
+
+- tapOn:
+    id: "username_input"
+- inputText: "testuser"
+
+- tapOn:
+    id: "password_input"
+- inputText: "password123"
+
+- tapOn:
+    id: "login_button"
+
+- assertVisible:
+    text: "Catálogo"

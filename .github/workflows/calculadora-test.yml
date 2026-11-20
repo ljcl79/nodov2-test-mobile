@@ -1,0 +1,69 @@
+name: Test Calculadora
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-maestro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout codigo
+        uses: actions/checkout@v7
+
+      - name: Instalamos JAVA
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Instalar Maestro CLI
+        run: |
+          curl -Ls "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Habilitar KVM (aceleración del emulador)
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Habilitar AVD cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-x86_64-34
+
+      - name: Ejecutar tests en emulador Android
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          avd-name: maestro_avd
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            # Instala el APK ubicado en la raíz del repositorio
+            adb install -r CalculadoraIMC.apk
+            adb wait-for-device
+
+            # Crea una carpeta para los resultados estructurados
+            mkdir -p maestro-output
+
+            # Ejecuta Maestro exportando el reporte XML
+            maestro test --format junit --output maestro-output/report.xml test_calculadora/01_titulo_visible.yml
+
+      - name: Subir reporte de Maestro
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-test-results
+          path: maestro-output/
+          if-no-files-found: ignore
